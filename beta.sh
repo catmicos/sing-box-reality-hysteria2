@@ -421,6 +421,8 @@ proxies:
     # up: "30 Mbps" # 若不写单位，默认为 Mbps
     # down: "200 Mbps" # 若不写单位，默认为 Mbps
     password: $hy_password
+    obfs: salamander
+    password: $reality_uuid 
     sni: $hy_server_name
     skip-cert-verify: true
     alpn:
