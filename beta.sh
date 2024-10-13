@@ -111,12 +111,12 @@ install_pkgs() {
   done
 }
 install_shortcut() {
-  cat > /root/sbox/mianyang.sh << EOF
+  cat > /root/sbox/catmi.sh << EOF
 #!/usr/bin/env bash
 bash <(curl -fsSL https://github.com/catmicos/sing-box-reality-hysteria2/raw/main/beta.sh) \$1
 EOF
-  chmod +x /root/sbox/mianyang.sh
-  ln -sf /root/sbox/mianyang.sh /usr/bin/mianyang
+  chmod +x /root/sbox/catmi.sh
+  ln -sf /root/sbox/catmi.sh /usr/bin/catmi
 
 }
 reload_singbox(){
@@ -418,11 +418,9 @@ proxies:
     server: $server_ip
     port: $hy_port
     #  up和down均不写或为0则使用BBR流控
-    # up: "30 Mbps" # 若不写单位，默认为 Mbps
-    # down: "200 Mbps" # 若不写单位，默认为 Mbps
+    up: "45 Mbps" # 若不写单位，默认为 Mbps
+    down: "150 Mbps" # 若不写单位，默认为 Mbps
     password: $hy_password
-    obfs: salamander
-    obfs-password: $ws_path
     sni: $hy_server_name
     skip-cert-verify: true
     alpn:
@@ -911,8 +909,8 @@ uninstall_singbox() {
     # Remove configuration and executable files
     rm -f /root/sbox/sbconfig_server.json
     rm -f /root/sbox/sing-box
-    rm -f /usr/bin/mianyang
-    rm -f /root/sbox/mianyang.sh
+    rm -f /usr/bin/catmi
+    rm -f /root/sbox/catmi.sh
     rm -f /root/sbox/cloudflared-linux
     rm -f /root/sbox/self-cert/private.key
     rm -f /root/sbox/self-cert/cert.pem
@@ -1534,7 +1532,7 @@ echo ""
 #install pkgs
 install_pkgs
 # Check if reality.json, sing-box, and sing-box.service already exist
-if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -f "/root/sbox/mianyang.sh" ] && [ -f "/usr/bin/mianyang" ] && [ -f "/root/sbox/sing-box" ] && [ -f "/etc/systemd/system/sing-box.service" ]; then
+if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -f "/root/sbox/catmi.sh" ] && [ -f "/usr/bin/catmi" ] && [ -f "/root/sbox/sing-box" ] && [ -f "/etc/systemd/system/sing-box.service" ]; then
     echo ""
     warning "sing-box-reality-hysteria2已安装"
     show_status
@@ -1573,7 +1571,7 @@ if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -
           ;;
       5)
           enable_bbr
-          mianyang
+          catmi
           exit 0
           ;;
       6)
@@ -1759,16 +1757,7 @@ cat > /root/sbox/sbconfig_server.json << EOF
             }
         ],
 	
-  "obfs": {
-    "type": "salamander",
-    "salamander": {
-      
-     
-
   
-"password": "$ws_pathr"
-    }
-  },
 
         "tls": {
             "enabled": true,
@@ -1842,7 +1831,7 @@ if /root/sbox/sing-box check -c /root/sbox/sbconfig_server.json; then
     systemctl restart sing-box
     install_shortcut
     show_client_configuration
-    hint "输入mianyang,打开菜单"
+    hint "输入catmi,打开菜单"
 else
     error "check sing-box server config profile error!"
 fi
