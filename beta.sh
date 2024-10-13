@@ -113,7 +113,7 @@ install_pkgs() {
 install_shortcut() {
   cat > /root/sbox/mianyang.sh << EOF
 #!/usr/bin/env bash
-bash <(curl -fsSL https://github.com/vveg26/sing-box-reality-hysteria2/raw/main/beta.sh) \$1
+bash <(curl -fsSL https://github.com/catmicos/sing-box-reality-hysteria2/raw/main/beta.sh) \$1
 EOF
   chmod +x /root/sbox/mianyang.sh
   ln -sf /root/sbox/mianyang.sh /usr/bin/mianyang
@@ -1758,6 +1758,10 @@ cat > /root/sbox/sbconfig_server.json << EOF
                 "password": "$hy_password"
             }
         ],
+	"obfs": {
+        "type": "salamander",
+        "password": "$ws_path"
+      },
         "tls": {
             "enabled": true,
             "alpn": [
