@@ -1758,10 +1758,18 @@ cat > /root/sbox/sbconfig_server.json << EOF
                 "password": "$hy_password"
             }
         ],
-	"obfs": {
-        "type": "salamander",
-        "password": "$ws_path"
-      },
+	
+  "obfs": {
+    "type": "salamander",
+    "salamander": {
+      
+     
+
+  
+"password": "$ws_pathr"
+    }
+  },
+
         "tls": {
             "enabled": true,
             "alpn": [
