@@ -422,7 +422,7 @@ proxies:
     # down: "200 Mbps" # 若不写单位，默认为 Mbps
     password: $hy_password
     obfs: salamander
-    obfs-password: $reality_uuid 
+    obfs-password: safai1564addate26nhg
     sni: $hy_server_name
     skip-cert-verify: true
     alpn:
